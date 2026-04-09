@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/business/">
+    <Project Path="Process360.Core/Process360.Core.csproj" />
+    <Project Path="Process360.Repository/Process360.Repository.csproj" />
+  </Folder>
+  <Folder Name="/_Other/">
+    <Project Path="Process360.Database/Process360.Database.sqlproj" Id="342f1f95-8d62-4f2e-960e-b7021a778f0d">
+      <Build />
+      <Deploy />
+    </Project>
+  </Folder>
+  <Project Path="Process360.API/Process360.API.csproj" />
+  <Project Path="Process360.APITest/Process360.APITest.csproj" />
+</Solution>

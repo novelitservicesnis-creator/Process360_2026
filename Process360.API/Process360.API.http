@@ -1,0 +1,336 @@
+@Process360.API_HostAddress = https://localhost:7001
+@ContentType = application/json
+
+###
+### ============================================================
+### CUSTOMERS ENDPOINTS
+### ============================================================
+
+### Get all customers
+GET {{Process360.API_HostAddress}}/api/v1/customers
+Accept: {{ContentType}}
+
+###
+
+### Get customer by ID
+GET {{Process360.API_HostAddress}}/api/v1/customers/1
+Accept: {{ContentType}}
+
+###
+
+### Create customer
+POST {{Process360.API_HostAddress}}/api/v1/customers
+Content-Type: {{ContentType}}
+
+{
+  "login": "john.doe",
+  "name": "John Doe"
+}
+
+###
+
+### Update customer
+PUT {{Process360.API_HostAddress}}/api/v1/customers/1
+Content-Type: {{ContentType}}
+
+{
+  "login": "jane.doe",
+  "name": "Jane Doe"
+}
+
+###
+
+### Delete customer
+DELETE {{Process360.API_HostAddress}}/api/v1/customers/1
+
+###
+### ============================================================
+### PROJECTS ENDPOINTS
+### ============================================================
+
+### Get all projects
+GET {{Process360.API_HostAddress}}/api/v1/projects
+Accept: {{ContentType}}
+
+###
+
+### Get project by ID
+GET {{Process360.API_HostAddress}}/api/v1/projects/1
+Accept: {{ContentType}}
+
+###
+
+### Create project
+POST {{Process360.API_HostAddress}}/api/v1/projects
+Content-Type: {{ContentType}}
+
+{
+  "code": "PRJ001",
+  "name": "Project Management System",
+  "description": "A comprehensive project management solution"
+}
+
+###
+
+### Update project
+PUT {{Process360.API_HostAddress}}/api/v1/projects/1
+Content-Type: {{ContentType}}
+
+{
+  "code": "PRJ001",
+  "name": "Updated Project Name",
+  "description": "Updated description"
+}
+
+###
+
+### Delete project
+DELETE {{Process360.API_HostAddress}}/api/v1/projects/1
+
+###
+### ============================================================
+### PROJECT TASKS ENDPOINTS
+### ============================================================
+
+### Get all project tasks
+GET {{Process360.API_HostAddress}}/api/v1/projecttasks
+Accept: {{ContentType}}
+
+###
+
+### Get project task by ID
+GET {{Process360.API_HostAddress}}/api/v1/projecttasks/1
+Accept: {{ContentType}}
+
+###
+
+### Create project task
+POST {{Process360.API_HostAddress}}/api/v1/projecttasks
+Content-Type: {{ContentType}}
+
+{
+  "title": "Design Database Schema",
+  "description": "Create and design the database schema for the application",
+  "projectId": 1,
+  "projectTaskTypeId": 1,
+  "assignedResourceId": 1
+}
+
+###
+
+### Update project task
+PUT {{Process360.API_HostAddress}}/api/v1/projecttasks/1
+Content-Type: {{ContentType}}
+
+{
+  "title": "Updated Task Title",
+  "description": "Updated description",
+  "status": "In Progress"
+}
+
+###
+
+### Delete project task
+DELETE {{Process360.API_HostAddress}}/api/v1/projecttasks/1
+
+###
+### ============================================================
+### RESOURCES ENDPOINTS
+### ============================================================
+
+### Get all resources
+GET {{Process360.API_HostAddress}}/api/v1/resources
+Accept: {{ContentType}}
+
+###
+
+### Get resource by ID
+GET {{Process360.API_HostAddress}}/api/v1/resources/1
+Accept: {{ContentType}}
+
+###
+
+### Create resource
+POST {{Process360.API_HostAddress}}/api/v1/resources
+Content-Type: {{ContentType}}
+
+{
+  "email": "john@process360.com",
+  "password": "SecurePassword123!",
+  "firstName": "John",
+  "lastName": "Developer"
+}
+
+###
+
+### Update resource
+PUT {{Process360.API_HostAddress}}/api/v1/resources/1
+Content-Type: {{ContentType}}
+
+{
+  "email": "john.updated@process360.com",
+  "firstName": "John",
+  "lastName": "Developer"
+}
+
+###
+
+### Delete resource
+DELETE {{Process360.API_HostAddress}}/api/v1/resources/1
+
+###
+### ============================================================
+### TECHNOLOGIES ENDPOINTS
+### ============================================================
+
+### Get all technologies
+GET {{Process360.API_HostAddress}}/api/v1/technologies
+Accept: {{ContentType}}
+
+###
+
+### Get technology by ID
+GET {{Process360.API_HostAddress}}/api/v1/technologies/1
+Accept: {{ContentType}}
+
+###
+
+### Create technology
+POST {{Process360.API_HostAddress}}/api/v1/technologies
+Content-Type: {{ContentType}}
+
+{
+  "name": ".NET 10",
+  "description": "Microsoft .NET 10 framework"
+}
+
+###
+
+### Update technology
+PUT {{Process360.API_HostAddress}}/api/v1/technologies/1
+Content-Type: {{ContentType}}
+
+{
+  "name": ".NET 10",
+  "description": "Updated description"
+}
+
+###
+
+### Delete technology
+DELETE {{Process360.API_HostAddress}}/api/v1/technologies/1
+
+###
+### ============================================================
+### PROJECT TASK TYPES ENDPOINTS
+### ============================================================
+
+### Get all project task types
+GET {{Process360.API_HostAddress}}/api/v1/projecttasktypes
+Accept: {{ContentType}}
+
+###
+
+### Get project task type by ID
+GET {{Process360.API_HostAddress}}/api/v1/projecttasktypes/1
+Accept: {{ContentType}}
+
+###
+
+### Create project task type
+POST {{Process360.API_HostAddress}}/api/v1/projecttasktypes
+Content-Type: {{ContentType}}
+
+{
+  "name": "Development"
+}
+
+###
+
+### Update project task type
+PUT {{Process360.API_HostAddress}}/api/v1/projecttasktypes/1
+Content-Type: {{ContentType}}
+
+{
+  "name": "Development & Testing"
+}
+
+###
+
+### Delete project task type
+DELETE {{Process360.API_HostAddress}}/api/v1/projecttasktypes/1
+
+###
+### ============================================================
+### PROJECT RESOURCES ENDPOINTS
+### ============================================================
+
+### Get all project resources
+GET {{Process360.API_HostAddress}}/api/v1/projectresources
+Accept: {{ContentType}}
+
+###
+
+### Get project resource by ID
+GET {{Process360.API_HostAddress}}/api/v1/projectresources/1
+Accept: {{ContentType}}
+
+###
+
+### Assign resource to project
+POST {{Process360.API_HostAddress}}/api/v1/projectresources
+Content-Type: {{ContentType}}
+
+{
+  "projectId": 1,
+  "resourceId": 1
+}
+
+###
+
+### Delete project resource assignment
+DELETE {{Process360.API_HostAddress}}/api/v1/projectresources/1
+
+###
+### ============================================================
+### TASK COMMENTS ENDPOINTS
+### ============================================================
+
+### Get all task comments
+GET {{Process360.API_HostAddress}}/api/v1/taskcomments
+Accept: {{ContentType}}
+
+###
+
+### Get task comment by ID
+GET {{Process360.API_HostAddress}}/api/v1/taskcomments/1
+Accept: {{ContentType}}
+
+###
+
+### Create task comment
+POST {{Process360.API_HostAddress}}/api/v1/taskcomments
+Content-Type: {{ContentType}}
+
+{
+  "projectTaskId": 1,
+  "comment": "This task needs additional review before deployment",
+  "createdByResourceId": 1
+}
+
+###
+
+### Update task comment
+PUT {{Process360.API_HostAddress}}/api/v1/taskcomments/1
+Content-Type: {{ContentType}}
+
+{
+  "comment": "Updated comment text"
+}
+
+###
+
+### Delete task comment
+DELETE {{Process360.API_HostAddress}}/api/v1/taskcomments/1
+
+###
