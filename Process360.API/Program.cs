@@ -5,7 +5,7 @@ using Process360.Repository.Repository;
 using Process360.Repository.Repository.Base;
 using Process360.API.Mappings;
 
-using Microsoft.AspNetCore.Authentication.JwtBearer; 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Authentication;
 using System.Text;
@@ -99,9 +99,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 // Add Swagger/OpenAPI documentation
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddSwaggerGen(options =>
 {
-    c.SwaggerDoc("v1", new() { 
+    options.SwaggerDoc("v1", new() { 
         Title = "Process360 API", 
         Version = "v1",
         Description = "Process360 Project Management API"
@@ -134,6 +134,32 @@ builder.Services.AddCors(options =>
     });
 });
 
+// ============================================================
+// AUTHENTICATION CONFIGURATION
+// ============================================================
+var jwtSettings = builder.Configuration.GetSection("Jwt");
+var secretKey = Encoding.ASCII.GetBytes(jwtSettings["SecretKey"]);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(secretKey),
+        ValidateIssuer = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidateAudience = true,
+        ValidAudience = jwtSettings["Audience"],
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero
+    };
+});
+
 // Add Authorization
 builder.Services.AddAuthorization();
 
@@ -159,6 +185,10 @@ if (!app.Environment.IsDevelopment())
 // CORS Policy
 app.UseCors("AllowSpecificOrigins");
 
+// Authentication & Authorization middleware (must be before UseAuthorization)
+app.UseAuthentication();
+app.UseAuthorization();
+
 // Request logging middleware
 app.Use(async (context, next) =>
 {
@@ -173,9 +203,6 @@ app.Use(async (context, next) =>
         context.Request.Method, 
         context.Request.Path);
 });
-
-// Authorization
-app.UseAuthorization();
 
 // Swagger UI middleware
 app.UseSwagger();
