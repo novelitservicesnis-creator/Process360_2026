@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 // ============================================================
 // DATABASE CONFIGURATION
 // ============================================================
-var connectionString = "Server=DESKTOP-6QBF8V1\\SQLEXPRESS2022;Database=Process360;Integrated Security=true;TrustServerCertificate=true;";
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ProcessDbContext>(options =>
     options.UseSqlServer(connectionString)
