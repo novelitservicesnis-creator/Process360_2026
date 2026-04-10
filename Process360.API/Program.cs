@@ -215,29 +215,6 @@ app.UseSwaggerUI(c =>
 // Map Controllers
 app.MapControllers();
 
-// ============================================================
-// DATABASE INITIALIZATION
-// ============================================================
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var logger = services.GetRequiredService<ILogger<Program>>();
-
-    try
-    {
-        var context = services.GetRequiredService<ProcessDbContext>();
-
-        // Apply any pending migrations
-        context.Database.Migrate();
-
-        logger.LogInformation("Database migrations applied successfully");
-    }
-    catch (Exception ex)
-    {
-        logger.LogError(ex, "An error occurred while migrating the database");
-    }
-}
-
 var mainLogger = app.Services.GetRequiredService<ILogger<Program>>();
 mainLogger.LogInformation("=== Application Starting ===");
 mainLogger.LogInformation("Database: Process360");
